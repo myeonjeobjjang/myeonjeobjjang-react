@@ -2,7 +2,7 @@ import useBears from "../hooks/bears";
 
 const Bears = () => {
     const bears = useBears((state) => state.bears);
-    const {increasePopulation, removeAllBears, updateBears} = useBears((state) => state);
+    const {increasePopulation, removeAllBears} = useBears((state) => state);
     return (
         <div className={`Bears`}>
             <section>{bears}</section>
