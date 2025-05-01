@@ -3,6 +3,7 @@ import Home from "./pages/Home.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import Bears from "./pages/Bears.tsx";
 import Header from "./components/Header.tsx";
+import LoginPage from "./pages/LoginPage.tsx";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Routes>
             <Route path={`/`} element={<Home/>}/>
             <Route path={`/bears`} element={<Bears/>}/>
+            <Route path={`/login`} element={<LoginPage/>}/>
             <Route path={`*`} element={<NotFound/>}/>
         </Routes>
     </>
