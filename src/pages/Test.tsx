@@ -2,8 +2,10 @@ import Login from "../components/Login.tsx";
 import SignUp from "../components/SignUp.tsx";
 import {refreshTokens} from "../api/member/refreshTokens.ts";
 import who from "../api/member/who.ts";
+import usePageTitle from "../hooks/usePageTitle.ts";
 
 const Test = () => {
+    usePageTitle(`테스트 페이지`);
     return (
         <div>
             <Login/>
