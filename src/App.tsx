@@ -5,6 +5,7 @@ import Bears from "./pages/Bears.tsx";
 import Header from "./components/Header.tsx";
 import Test from "./pages/Test.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
+import SignUpPage from "./pages/SignUpPage.tsx";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             <Route path={`/`} element={<Home/>}/>
             <Route path={`/bears`} element={<Bears/>}/>
             <Route path={`/login`} element={<LoginPage/>}/>
+            <Route path={`/signup`} element={<SignUpPage/>}/>
             <Route path={`/test`} element={<Test/>}/>
             <Route path={`*`} element={<NotFound/>}/>
         </Routes>
