@@ -6,6 +6,7 @@ import Header from "./components/Header.tsx";
 import Test from "./pages/Test.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
 import SignUpPage from "./pages/SignUpPage.tsx";
+import ProfilePage from "./pages/ProfilePage.tsx";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path={`/bears`} element={<Bears/>}/>
             <Route path={`/login`} element={<LoginPage/>}/>
             <Route path={`/signup`} element={<SignUpPage/>}/>
+            <Route path={`/profile`} element={<ProfilePage/>}/>
             <Route path={`/test`} element={<Test/>}/>
             <Route path={`*`} element={<NotFound/>}/>
         </Routes>

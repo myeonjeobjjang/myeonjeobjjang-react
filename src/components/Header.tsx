@@ -36,8 +36,8 @@ const Header = () => {
                                     <HeaderLinkListItemA
                                         color={Colors.LinkItemTextColor} background={Colors.LinkItemBackgroundColor}
                                         hover_color={Colors.LinkItemTextHoverColor}
-                                        href="#">
-                                        Profile
+                                        onClick={() => nav("/profile")}>
+                                        내 정보
                                     </HeaderLinkListItemA>
                                 </HeaderLinkListItem>
                             ) : (
