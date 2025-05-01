@@ -1,5 +1,5 @@
 import basicAxiosInstance from "../basicAxiosInstance.ts";
-import {getRefreshToken, setAccessToken, setRefreshToken} from "../../util/storage.ts";
+import {getRefreshToken, setUserInfos} from "../../util/storage.ts";
 import {LoginOrSignUpResponse} from "./types/loginOrSignUpResponse.ts";
 
 export async function refreshTokens(): Promise<LoginOrSignUpResponse> {
@@ -11,8 +11,7 @@ export async function refreshTokens(): Promise<LoginOrSignUpResponse> {
             },
         },
     ).then((response) => {
-        setAccessToken(response.data.jwtPairResponse.accessToken);
-        setRefreshToken(response.data.jwtPairResponse.refreshToken);
+        setUserInfos(response.data);
 
         console.log("토큰 리프레시 됨", response.data);
         return response.data;

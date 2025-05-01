@@ -1,22 +1,27 @@
 import {useRef} from "react";
 import signUp from "../api/member/signUp.ts";
+import {useNavigate} from "react-router-dom";
 
 const onSubmit = async (email: string, userName: string) => {
-    signUp({email, userName});
+    return await signUp({email, userName});
 }
 
 const SignUp = () => {
     const signUpIdRef = useRef<HTMLInputElement>(null);
     const signUpNameRef = useRef<HTMLInputElement>(null);
+    const nav = useNavigate();
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         const id: string = signUpIdRef.current?.value ?? "";
         const userName: string = signUpNameRef.current?.value ?? "";
         if(id === "" || userName == "") {
             alert("아이디와 이름은 공백일 수 없습니다.");
             return;
         }
-        onSubmit(id, userName);
+        const loginOrSignUpResponse = await onSubmit(id, userName);
+        if(loginOrSignUpResponse) {
+            nav("/", { replace: true });
+        }
     };
 
     return (

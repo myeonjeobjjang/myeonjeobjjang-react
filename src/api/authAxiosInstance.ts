@@ -1,5 +1,5 @@
 import axios, {InternalAxiosRequestConfig} from "axios";
-import {getAccessToken, removeAccessToken, removeRefreshToken} from "../util/storage.ts";
+import {getAccessToken, removeUserInfos} from "../util/storage.ts";
 import {refreshTokens} from "./member/refreshTokens.ts";
 
 const authAxiosInstance = axios.create({
@@ -12,7 +12,7 @@ const authAxiosInstance = axios.create({
 authAxiosInstance.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
         const accessToken = getAccessToken();
-        if(accessToken && config.headers) {
+        if (accessToken && config.headers) {
             config.headers["Authorization"] = `Bearer ${accessToken}`;
         }
         return config;
@@ -27,28 +27,27 @@ authAxiosInstance.interceptors.response.use(
         return response;
     },
     async (error) => {
-        const {response: {status, data : {errorCode, message, timeStamp}} } = error;
+        const {response: {status, data: {errorCode, message, timeStamp}}} = error;
         console.log(`Error Response ${status} : ${errorCode} ${message} [${timeStamp}]`, error);
         const originRequest = error.config;
-        if(status === 401) {
+        if (status === 401) {
             try {
                 const newToken = await refreshTokens().catch((error) => {
                     throw error;
                 });
 
-                if(newToken) {
+                if (newToken) {
                     originRequest.headers.Authorization = `Bearer ${newToken.jwtPairResponse.accessToken}`;
                     return authAxiosInstance(originRequest);
                 }
-            } catch(error) {
+            } catch (error) {
                 console.log("토큰 갱신 실패 ", error);
-                removeAccessToken();
-                removeRefreshToken();
+                removeUserInfos();
                 window.location.href = "/login";
                 return Promise.reject(error);
             }
         } else {
-            if(!getAccessToken()) { // access token 이 없는 경우
+            if (!getAccessToken()) { // access token 이 없는 경우
                 window.location.href = "/login";
             }
         }

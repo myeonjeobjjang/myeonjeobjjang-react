@@ -3,7 +3,7 @@ interface JwtPairResponse {
     refreshToken: string;
 }
 
-interface MemberInfoResponse {
+export interface MemberInfoResponse {
     memberId: number;
     email: string;
     userName: string;

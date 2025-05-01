@@ -1,16 +1,21 @@
 import {useRef} from "react";
 import login from "../api/member/login.ts";
+import {useNavigate} from "react-router-dom";
 
 const onSubmit = async (email: string) => {
-    await login({email});
+    return await login({email});
 }
 
 const Login = () => {
     const loginIdRef = useRef<HTMLInputElement>(null);
+    const nav = useNavigate();
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         const id: string = loginIdRef.current?.value ?? "";
-        onSubmit(id);
+        const loginOrSignUpResponse = await onSubmit(id);
+        if(loginOrSignUpResponse) {
+            nav("/", { replace: true });
+        }
     };
 
     return (
