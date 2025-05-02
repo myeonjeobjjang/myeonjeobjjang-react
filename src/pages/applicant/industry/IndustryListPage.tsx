@@ -1,30 +1,19 @@
-import getIndustryList from "../../../api/industry/applicant/getIndustryList.ts";
-import {useEffect, useState} from "react";
-import {IndustryInfoResponse} from "../../../api/industry/types/IndustryInfoResponse.ts";
+import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import styled from "styled-components";
 import {useExitWhenNoPermission} from "../../../hooks/useExitWhenNoPermission.ts";
 import {Role} from "../../../constants/role.ts";
 import usePageTitle from "../../../hooks/usePageTitle.ts";
-
-const callApi = async () => {
-    const industryList = await getIndustryList();
-    return industryList;
-}
-
-const initialData: IndustryInfoResponse[] = [];
+import {useIndustryInfo} from "../../../hooks/useIndustryInfo.ts";
 
 const IndustryListPage = () => {
     const nav = useNavigate();
     useExitWhenNoPermission(nav, Role.ALL);
     usePageTitle(`산업군 리스트`);
+    const {industryInfoArray, updateInfo} = useIndustryInfo();
 
-    const [industries, setIndustries] = useState(initialData);
     useEffect(() => {
-        callApi().then(data => {
-                setIndustries(data.industries);
-            }
-        );
+        updateInfo();
     }, []);
     return (
         <>
@@ -38,8 +27,8 @@ const IndustryListPage = () => {
                 </IndustryHeadTr>
                 </thead>
                 <tbody>
-                {industries.map((industry) => (
-                    <IndustryInfoTr onClick={() => nav(`/industry/${industry.industryId}`)}>
+                {industryInfoArray.map((industry) => (
+                    <IndustryInfoTr onClick={() => nav(`/industry/${industry.industryId}`)} key={industry.industryId}>
                         <td>{industry.industryId}</td>
                         <td>{industry.industryName}</td>
                         <td>{industry.industryInformation}</td>

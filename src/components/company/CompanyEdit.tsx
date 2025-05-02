@@ -1,6 +1,6 @@
-import {FormEvent, useEffect, useState} from "react";
-import getIndustryList from "../../api/industry/applicant/getIndustryList.ts";
+import {FormEvent, useEffect} from "react";
 import {IndustryInfoResponse} from "../../api/industry/types/IndustryInfoResponse.ts";
+import {useIndustryInfo} from "../../hooks/useIndustryInfo.ts";
 
 interface CompanyEditProps {
     onSubmit: (e: FormEvent<HTMLFormElement>) => void;
@@ -12,8 +12,6 @@ interface CompanyEditProps {
     submitButtonText: string
 }
 
-const initalIndustryInfoResponses: IndustryInfoResponse[] = [];
-
 const CompanyEdit = (
     {
         onSubmit,
@@ -24,20 +22,17 @@ const CompanyEdit = (
         submitButtonText,
         industryIdRef
     }: CompanyEditProps) => {
-    const [industryList, setIndustryList] = useState(initalIndustryInfoResponses);
+    const {industryInfoArray, updateInfo} = useIndustryInfo();
     useEffect(() => {
-        const industryList = getIndustryListApi();
-        industryList.then(industryList => {
-            setIndustryList(industryList.industries);
-        })
+        updateInfo();
     }, [])
     return (
         <form onSubmit={onSubmit}>
             <input type="text" placeholder={titlePlaceHolder} ref={titleRef}/>
             <select ref={industryIdRef}>
                 {
-                    industryList.length === 0 ? <></> :
-                        industryList.map((industryInfoResponse: IndustryInfoResponse) =>
+                    industryInfoArray.length === 0 ? <></> :
+                        industryInfoArray.map((industryInfoResponse: IndustryInfoResponse) =>
                             <option key={industryInfoResponse.industryId} value={industryInfoResponse.industryId}>
                                 {industryInfoResponse.industryName}
                             </option>
@@ -53,7 +48,3 @@ const CompanyEdit = (
 }
 
 export default CompanyEdit;
-
-const getIndustryListApi = async () => {
-    return await getIndustryList();
-}
