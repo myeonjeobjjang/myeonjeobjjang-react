@@ -12,6 +12,9 @@ const authAxiosInstance = axios.create({
 authAxiosInstance.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
         const accessToken = getAccessToken();
+        if(!accessToken) {
+            return Promise.reject();
+        }
         if (accessToken && config.headers) {
             config.headers["Authorization"] = `Bearer ${accessToken}`;
         }
