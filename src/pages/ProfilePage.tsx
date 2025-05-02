@@ -1,17 +1,14 @@
 import {getUserInfo, removeUserInfos} from "../util/storage.ts";
 import {useNavigate} from "react-router-dom";
-import {useEffect} from "react";
 import usePageTitle from "../hooks/usePageTitle.ts";
+import {useExitWhenNoPermission} from "../hooks/useExitWhenNoPermission.ts";
+import {Role} from "../constants/role.ts";
 
 const ProfilePage = () => {
     const nav = useNavigate();
     const userInfo = getUserInfo();
+    useExitWhenNoPermission(nav, Role.ALL);
     usePageTitle(`${userInfo?.userName}님 프로필`);
-    useEffect(() => {
-        if (!userInfo) {
-            nav("/", {replace: true});
-        }
-    });
     const logout = () => {
         removeUserInfos();
         nav("/", {replace: true});
@@ -19,7 +16,13 @@ const ProfilePage = () => {
     return (
         <>
             {
-                !userInfo ? <></> :
+                !userInfo ?
+                    <>
+                        <div>사용자 정보 없음</div>
+                        <button onClick={logout}>
+                            사용자 정보 리프레시
+                        </button>
+                    </> :
                     <>
                         <div>
                             이메일 : {userInfo.email}
