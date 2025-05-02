@@ -49,6 +49,7 @@ authAxiosInstance.interceptors.response.use(
         } else {
             if (!getAccessToken()) { // access token 이 없는 경우
                 window.location.href = "/login";
+                alert("로그인이 필요한 페이지입니다.");
             }
         }
         return Promise.reject(error);

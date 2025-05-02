@@ -8,7 +8,11 @@ import LoginPage from "./pages/LoginPage.tsx";
 import SignUpPage from "./pages/SignUpPage.tsx";
 import ProfilePage from "./pages/ProfilePage.tsx";
 import AdminManagementPage from "./pages/admin/AdminManagementPage.tsx";
+import AdminIndustryCreatePage from "./pages/admin/AdminIndustryCreatePage.tsx";
+import IndustryListPage from "./pages/applicant/industry/IndustryListPage.tsx";
+import IndustryInfoPage from "./pages/applicant/industry/IndustryInfoPage.tsx";
 import NoPermissionPage from "./pages/NoPermissionPage.tsx";
+import IndustryPage from "./pages/applicant/industry/IndustryPage.tsx";
 
 function App() {
     return (
@@ -23,6 +27,11 @@ function App() {
                 <Route path={`/test`} element={<Test/>}/>
 
                 <Route path={`/admin`} element={<AdminManagementPage/>}/>
+                <Route path={`/admin/industry/create`} element={<AdminIndustryCreatePage/>}/>
+
+                <Route path={`/industry`} element={<IndustryPage/>}/>
+                <Route path={`/industry/:industryNumber`} element={<IndustryInfoPage/>}/>
+                <Route path={`/industry/list`} element={<IndustryListPage/>}/>
 
                 <Route path={`/no-permission`} element={<NoPermissionPage/>}/>
                 <Route path={`/not-found`} element={<NotFound/>}/>
