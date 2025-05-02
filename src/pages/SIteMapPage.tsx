@@ -25,6 +25,11 @@ const SiteMapPage = () => {
                     <SiteMapLi hover_color={hover_color}onClick={() => onClick("/industry/list")}>산업군 리스트</SiteMapLi>
                 </ul>
 
+                <li>회사</li>
+                <ul>
+                    <SiteMapLi hover_color={hover_color}onClick={() => onClick("/company/create")}>회사 생성</SiteMapLi>
+                </ul>
+
                 <SiteMapLi hover_color={hover_color} onClick={() => onClick("/no-permission")}>권한 없음</SiteMapLi>
                 <SiteMapLi hover_color={hover_color} onClick={() => onClick("/not-found")}>페이지 없음</SiteMapLi>
             </ul>

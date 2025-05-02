@@ -14,6 +14,7 @@ import IndustryInfoPage from "./pages/applicant/industry/IndustryInfoPage.tsx";
 import NoPermissionPage from "./pages/NoPermissionPage.tsx";
 import IndustryPage from "./pages/applicant/industry/IndustryPage.tsx";
 import SiteMapPage from "./pages/SIteMapPage.tsx";
+import CreateCompanyPage from "./pages/company/company/CreateCompanyPage.tsx";
 
 function App() {
     return (
@@ -34,6 +35,8 @@ function App() {
                 <Route path={`/industry`} element={<IndustryPage/>}/>
                 <Route path={`/industry/:industryNumber`} element={<IndustryInfoPage/>}/>
                 <Route path={`/industry/list`} element={<IndustryListPage/>}/>
+
+                <Route path={`/company/create`} element={<CreateCompanyPage/>}/>
 
                 <Route path={`/no-permission`} element={<NoPermissionPage/>}/>
                 <Route path={`/not-found`} element={<NotFound/>}/>
