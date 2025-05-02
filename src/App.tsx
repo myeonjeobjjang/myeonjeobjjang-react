@@ -13,6 +13,7 @@ import IndustryListPage from "./pages/applicant/industry/IndustryListPage.tsx";
 import IndustryInfoPage from "./pages/applicant/industry/IndustryInfoPage.tsx";
 import NoPermissionPage from "./pages/NoPermissionPage.tsx";
 import IndustryPage from "./pages/applicant/industry/IndustryPage.tsx";
+import SiteMapPage from "./pages/SIteMapPage.tsx";
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
             <Routes>
                 <Route path={`/`} element={<Home/>}/>
                 <Route path={`/bears`} element={<Bears/>}/>
+                <Route path={`/site-map`} element={<SiteMapPage/>}/>
                 <Route path={`/login`} element={<LoginPage/>}/>
                 <Route path={`/signup`} element={<SignUpPage/>}/>
                 <Route path={`/profile`} element={<ProfilePage/>}/>

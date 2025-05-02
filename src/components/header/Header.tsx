@@ -97,7 +97,7 @@ const Header = () => {
             </HeaderLogoContainer>
             <div>
                 <HeaderLinkList>
-                    <HeaderLinkListItem color={currentColor} onClick={() => nav("/")} content="Home"/>
+                    <HeaderLinkListItem color={currentColor} onClick={() => nav("/site-map")} content="사이트 맵"/>
                     {
                         listItemByRole(getUserInfo(), currentColor, nav)
                     }
