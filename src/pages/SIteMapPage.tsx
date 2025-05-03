@@ -20,16 +20,15 @@ const SiteMapPage = () => {
 
                 <SiteMapLi hover_color={hover_color} onClick={() => onClick("/admin")}>관리자</SiteMapLi>
 
-                <li>산업군</li>
+                <SiteMapLi hover_color={hover_color} onClick={() => onClick("/industry")}>산업군</SiteMapLi>
                 <ul>
-                    <SiteMapLi hover_color={hover_color}onClick={() => onClick("/admin/industry/create")}>산업군 만들기</SiteMapLi>
-                    <SiteMapLi hover_color={hover_color}onClick={() => onClick("/industry")}>산업군</SiteMapLi>
-                    <SiteMapLi hover_color={hover_color}onClick={() => onClick("/industry/list")}>산업군 리스트</SiteMapLi>
+                    <SiteMapLi hover_color={hover_color} onClick={() => onClick("/admin/industry/create")}>산업군 만들기</SiteMapLi>
+                    <SiteMapLi hover_color={hover_color} onClick={() => onClick("/industry/list")}>산업군 리스트</SiteMapLi>
                 </ul>
 
-                <li>회사</li>
+                <SiteMapLi hover_color={hover_color} onClick={() => onClick("/company")}>회사</SiteMapLi>
                 <ul>
-                    <SiteMapLi hover_color={hover_color}onClick={() => onClick("/company/create")}>회사 생성</SiteMapLi>
+                    <SiteMapLi hover_color={hover_color} onClick={() => onClick("/company/create")}>회사 생성</SiteMapLi>
                 </ul>
 
                 <SiteMapLi hover_color={hover_color} onClick={() => onClick("/no-permission")}>권한 없음</SiteMapLi>
