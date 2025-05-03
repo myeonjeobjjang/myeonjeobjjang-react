@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import {useNavigate} from "react-router-dom";
+import usePageTitle from "../hooks/usePageTitle.ts";
 
 const hover_color = "#ed7233";
 
 const SiteMapPage = () => {
     const nav = useNavigate();
+    usePageTitle(`사이트맵`);
     const onClick = (path: string) => {
         nav(path);
     }
