@@ -3,7 +3,7 @@ import {getAccessToken, removeUserInfos} from "../util/storage.ts";
 import {refreshTokens} from "./member/refreshTokens.ts";
 
 const authAxiosInstance = axios.create({
-    timeout: 10_000,
+    timeout: 30_000,
     headers: {
         "Content-Type": "application/json"
     }

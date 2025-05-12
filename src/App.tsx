@@ -19,6 +19,8 @@ import CompanyInfoPage from "./pages/applicant/company/CompanyInfoPage.tsx";
 import MyCompanyListPage from "./pages/company/company/MyCompanyListPage.tsx";
 import CompanyPage from "./pages/applicant/company/CompanyPage.tsx";
 import CompanyEditPage from "./pages/company/company/CompanyEditPage.tsx";
+import ChatConversationPage from "./pages/applicant/chat/ChatConversationPage.tsx";
+import ChatPage from "./pages/applicant/chat/ChatPage.tsx";
 
 function App() {
     return (
@@ -45,6 +47,9 @@ function App() {
                 <Route path={`/company/:companyNumber`} element={<CompanyInfoPage/>}/>
                 <Route path={`/company/list-mine`} element={<MyCompanyListPage/>}/>
                 <Route path={`/company/:companyNumber/edit`} element={<CompanyEditPage/>}/>
+
+                <Route path={`/chat`} element={<ChatPage/>}/>
+                <Route path={`/chat/:chatId/:mode`} element={<ChatConversationPage/>}/>
 
                 <Route path={`/no-permission`} element={<NoPermissionPage/>}/>
                 <Route path={`/not-found`} element={<NotFound/>}/>
