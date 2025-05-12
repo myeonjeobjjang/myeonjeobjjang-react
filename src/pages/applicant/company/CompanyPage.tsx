@@ -1,6 +1,6 @@
 import {getUserInfo} from "../../../util/storage.ts";
 import {useNavigate} from "react-router-dom";
-import {useRef} from "react";
+import {useEffect, useRef, useState} from "react";
 import {useExitWhenNoPermission} from "../../../hooks/useExitWhenNoPermission.ts";
 import {Role} from "../../../constants/role.ts";
 import usePageTitle from "../../../hooks/usePageTitle.ts";
@@ -11,6 +11,12 @@ const CompanyPage = () => {
     useExitWhenNoPermission(nav, Role.ALL);
     usePageTitle(`회사`);
 
+    const [userRole, setUserRole] = useState("");
+
+    useEffect(() => {
+        setUserRole(String(getUserInfo()?.role));
+    }, []);
+
     return (
         <>
             <input type="number" defaultValue="1" ref={companyNumber}/>
@@ -18,8 +24,11 @@ const CompanyPage = () => {
                 회사 조회
             </button>
             {
-                getUserInfo()?.role === "ROLE_ADMIN" || getUserInfo()?.role === "ROLE_COMPANY" ?
+                userRole === "ROLE_ADMIN" || userRole === "ROLE_COMPANY" ?
                     <>
+                        <button onClick={() => nav(`/company/${companyNumber.current?.value}/edit`)}>
+                            회사 정보 수정
+                        </button>
                         <br/>
                         <button onClick={() => nav(`/company/create`)}>
                             회사 생성
