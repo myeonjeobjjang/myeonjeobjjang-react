@@ -1,6 +1,6 @@
 export interface CompanyInfoResponse {
-    companyId: number;
-    companyName: string;
-    companyInformation: string;
-    industryId: number;
+    companyId: number | null;
+    companyName: string | null;
+    companyInformation: string | null;
+    industryId: number | null;
 }

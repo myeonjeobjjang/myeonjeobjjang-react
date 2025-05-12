@@ -46,7 +46,7 @@ const CompanyInfoPage = () => {
     }, [companyNumber]);
 
     useEffect(() => {
-        if(industryInfoArray.length > 0 && companyInfo.industryId > 0) {
+        if(industryInfoArray.length > 0 && Number(companyInfo.industryId) > 0) {
             const industryInfo = industryInfoArray.find(
                 (industryInfo) => industryInfo.industryId === companyInfo.industryId
             );
