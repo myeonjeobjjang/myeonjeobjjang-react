@@ -30,6 +30,10 @@ const CompanyPage = () => {
                             회사 정보 수정
                         </button>
                         <br/>
+                        <button onClick={() => nav(`/company/list-mine`)}>
+                            관리 회사 리스트 조회
+                        </button>
+                        <br/>
                         <button onClick={() => nav(`/company/create`)}>
                             회사 생성
                         </button>

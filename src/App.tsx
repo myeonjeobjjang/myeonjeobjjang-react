@@ -16,6 +16,7 @@ import IndustryPage from "./pages/applicant/industry/IndustryPage.tsx";
 import SiteMapPage from "./pages/SIteMapPage.tsx";
 import CreateCompanyPage from "./pages/company/company/CreateCompanyPage.tsx";
 import CompanyInfoPage from "./pages/applicant/company/CompanyInfoPage.tsx";
+import MyCompanyListPage from "./pages/company/company/MyCompanyListPage.tsx";
 import CompanyPage from "./pages/applicant/company/CompanyPage.tsx";
 import CompanyEditPage from "./pages/company/company/CompanyEditPage.tsx";
 
@@ -42,6 +43,7 @@ function App() {
                 <Route path={`/company`} element={<CompanyPage/>}/>
                 <Route path={`/company/create`} element={<CreateCompanyPage/>}/>
                 <Route path={`/company/:companyNumber`} element={<CompanyInfoPage/>}/>
+                <Route path={`/company/list-mine`} element={<MyCompanyListPage/>}/>
                 <Route path={`/company/:companyNumber/edit`} element={<CompanyEditPage/>}/>
 
                 <Route path={`/no-permission`} element={<NoPermissionPage/>}/>
