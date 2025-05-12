@@ -5,10 +5,13 @@ import {useIndustryInfo} from "../../hooks/useIndustryInfo.ts";
 interface CompanyEditProps {
     onSubmit: (e: FormEvent<HTMLFormElement>) => void;
     titlePlaceHolder: string;
-    titleRef: React.RefObject<HTMLInputElement | null>;
+    companyNameValue: string;
+    onCompanyNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     companyInformationPlaceHolder: string;
-    companyInformationRef: React.RefObject<HTMLTextAreaElement | null>;
-    industryIdRef: React.RefObject<HTMLSelectElement | null>;
+    companyInformationValue: string;
+    onCompanyInformationChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+    industryIdValue: number;
+    onIndustryIdChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
     submitButtonText: string
 }
 
@@ -16,11 +19,14 @@ const CompanyEdit = (
     {
         onSubmit,
         titlePlaceHolder,
-        titleRef,
+        companyNameValue,
+        onCompanyNameChange,
         companyInformationPlaceHolder,
-        companyInformationRef,
+        companyInformationValue,
+        onCompanyInformationChange,
         submitButtonText,
-        industryIdRef
+        industryIdValue,
+        onIndustryIdChange
     }: CompanyEditProps) => {
     const {industryInfoArray, updateInfo} = useIndustryInfo();
     useEffect(() => {
@@ -28,8 +34,8 @@ const CompanyEdit = (
     }, [])
     return (
         <form onSubmit={onSubmit}>
-            <input type="text" placeholder={titlePlaceHolder} ref={titleRef}/>
-            <select ref={industryIdRef}>
+            <input type="text" placeholder={titlePlaceHolder} value={companyNameValue} onChange={onCompanyNameChange}/>
+            <select value={industryIdValue} onChange={onIndustryIdChange}>
                 {
                     industryInfoArray.length === 0 ? <></> :
                         industryInfoArray.map((industryInfoResponse: IndustryInfoResponse) =>
@@ -40,7 +46,8 @@ const CompanyEdit = (
                 }
             </select>
             <br/>
-            <textarea rows={5} cols={40} placeholder={companyInformationPlaceHolder} ref={companyInformationRef}/>
+            <textarea rows={5} cols={40} placeholder={companyInformationPlaceHolder} value={companyInformationValue}
+                      onChange={onCompanyInformationChange}/>
             <br/>
             <button type="submit">{submitButtonText}</button>
         </form>
